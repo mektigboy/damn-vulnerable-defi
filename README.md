@@ -1,4 +1,4 @@
----> Cloned this repository to solve the challenges.
+**---> Cloned this repository to solve the challenges.**
 
 ![](cover.png)
 
