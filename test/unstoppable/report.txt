@@ -1,0 +1,22 @@
+Notes:
+
+  Token: DamnValuableToken (ERC20).
+
+  Function <depositTokens>:
+
+    Deposit tokens into the pool.
+    Transfer from message sender to contract.
+    Variable <poolBalance> will be updated. Track how much tokens the pool has.
+
+  Function <flashLoan>:
+
+    Request borrow amount (needs to be greater than 0).
+    Calculates the balance of the pool using the value of function (implemented in ERC20).
+    Requires <balanceBefore> is greater or equal than <borrowAmount>.
+    Asserts that the <poolBalance> in <depositTokens> function is the same as <balanceBefore>.
+    Transfers to the message sender the amount requested.
+    Returns callback function on contract <IReceiver>.
+
+Solution:
+
+  Desynchronize <poolBalance> and <balanceBefore>. Change <poolBalance>. Transfer tokens outside the function <depositTokens>.
