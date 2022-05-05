@@ -1,0 +1,32 @@
+Notes:
+
+NaiveReceiverLenderPool
+
+  Custom library for address <Address>.
+  Fixed fee: 1 ETH.
+
+  Function <fixedFee>:
+
+    Returns the fee.
+
+  Function <flashLoan>:
+
+    Requires parameters: <borrower>, <borrowAmount>.
+    Checks <balanceBefore>.
+    Verifies if contract has enough in the pool.
+    Requires <borrower> is a contract (must be a deployed contract).
+    Does <functionCallWithValue> (call a function by its signature) with <encondeWithSignature> using OpenZeppelin library & <borrowAmount>.
+    Requires the <balance> to be the <balanceBefore>, plus the fee.
+
+FlashLoanReceiver
+
+  Function <receiveEther>:
+
+    Verifies that only the pool can send this message or call this function.
+    Calculates how much it needs to pay.
+    Requires that the address of <balance> to be greater or equal than <amountToBePaid>.
+    Returns funds to the pool, plus the fee.
+
+Solution:
+
+  Deploy contract. We can call <flashLoan> on behalf any other address.
